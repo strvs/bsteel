@@ -267,7 +267,17 @@ $(document).ready(function() {
             adaptiveHeight: true,
             prevArrow: '<button type="button" class="slick-prev"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#slider-prev"></use></svg></button>',
             nextArrow: '<button type="button" class="slick-next"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#slider-next"></use></svg></button>',
-            dots: false
+            dots: false,
+            responsive: [
+                {
+                    breakpoint: 767,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                            arrows: false
+                        }
+                }
+            ]
         });
     });
 
@@ -293,6 +303,119 @@ $(document).ready(function() {
         });
     });
 
+    $('.page-main').each(function() {
+        var mainScroll = 0;
+        var mainStep = 0;
+        var isAnimateScroll = false;
+
+        var curScroll = 0;
+
+        if ($(window).width() > 767) {
+            $('.page-main').mousewheel(function(event) {
+                if (!isAnimateScroll) {
+                    isAnimateScroll = true;
+
+                    if (event.deltaY == -1) {
+                        if (mainStep == 0) {
+                            mainStep = 1;
+                            mainScroll = $('.main-about').offset().top;
+                        } else if (mainStep == 1) {
+                            mainStep = 2;
+                            mainScroll = $('.main-prefs').offset().top;
+                        } else if (mainStep == 2) {
+                            mainStep = 3;
+                            mainScroll = $('.main-prefs').offset().top;
+                            $('.main-prefs-list').css({'transform': 'translateY(-' + ($('.main-prefs-item').eq(1).offset().top - $('.main-prefs-list').offset().top) + 'px)'});
+                        } else if (mainStep == 3) {
+                            mainStep = 4;
+                            mainScroll = $('.main-prefs').offset().top;
+                            $('.main-prefs-list').css({'transform': 'translateY(-' + ($('.main-prefs-item').eq(2).offset().top - $('.main-prefs-list').offset().top) + 'px)'});
+                        } else if (mainStep == 4) {
+                            mainStep = 5;
+                            mainScroll = $('.main-prefs').offset().top;
+                            $('.main-prefs-list').css({'transform': 'translateY(-' + ($('.main-prefs-item').eq(3).offset().top - $('.main-prefs-list').offset().top) + 'px)'});
+                        } else if (mainStep == 5) {
+                            mainStep = 6;
+                            mainScroll = $('.main-catalogue').offset().top;
+                        } else if (mainStep == 6) {
+                            mainStep = 7;
+                            mainScroll = $('.main-solutions').offset().top;
+                        } else if (mainStep == 7) {
+                            mainStep = 8;
+                            mainScroll = $('.detail-inner-objects').offset().top;
+                        } else if (mainStep == 8) {
+                            mainStep = 9;
+                            mainScroll = $('.main-bolts').offset().top;
+                        } else if (mainStep == 9) {
+                            mainStep = 10;
+                            mainScroll = $('.main-project').offset().top;
+                        } else if (mainStep == 10) {
+                            mainStep = 11;
+                            mainScroll = $('.main-news').offset().top;
+                        } else if (mainStep == 11) {
+                            mainStep = 12;
+                            mainScroll = $('.page-footer').offset().top;
+                        } else if (mainStep == 12) {
+                            mainStep = 12;
+                            mainScroll = $('.footer').offset().top;
+                        } else {
+                            mainScroll += event.deltaFactor * 3;
+                        }
+                    } else {
+                        if (mainStep == 0) {
+                            mainStep = 0;
+                            mainScroll = 0;
+                        } else if (mainStep == 1) {
+                            mainStep = 0;
+                            mainScroll = 0;
+                        } else if (mainStep == 2) {
+                            mainStep = 1;
+                            mainScroll = $('.main-about').offset().top;
+                        } else if (mainStep == 3) {
+                            mainStep = 2;
+                            mainScroll = $('.main-prefs').offset().top;
+                        } else if (mainStep == 4) {
+                            mainStep = 3;
+                            mainScroll = $('.main-prefs').offset().top;
+                            $('.main-prefs-list').css({'transform': 'translateY(-' + ($('.main-prefs-item').eq(1).offset().top - $('.main-prefs-list').offset().top) + 'px)'});
+                        } else if (mainStep == 5) {
+                            mainStep = 4;
+                            mainScroll = $('.main-prefs').offset().top;
+                            $('.main-prefs-list').css({'transform': 'translateY(-' + ($('.main-prefs-item').eq(2).offset().top - $('.main-prefs-list').offset().top) + 'px)'});
+                        } else if (mainStep == 6) {
+                            mainStep = 5;
+                            mainScroll = $('.main-prefs').offset().top;
+                            $('.main-prefs-list').css({'transform': 'translateY(-' + ($('.main-prefs-item').eq(3).offset().top - $('.main-prefs-list').offset().top) + 'px)'});
+                        } else if (mainStep == 7) {
+                            mainStep = 6;
+                            mainScroll = $('.main-catalogue').offset().top;
+                        } else if (mainStep == 8) {
+                            mainStep = 7;
+                            mainScroll = $('.main-solutions').offset().top;
+                        } else if (mainStep == 9) {
+                            mainStep = 8;
+                            mainScroll = $('.detail-inner-objects').offset().top;
+                        } else if (mainStep == 10) {
+                            mainStep = 9;
+                            mainScroll = $('.main-bolts').offset().top;
+                        } else if (mainStep == 11) {
+                            mainStep = 10;
+                            mainScroll = $('.main-project').offset().top;
+                        } else if (mainStep == 12) {
+                            mainStep = 11;
+                            mainScroll = $('.main-news').offset().top;
+                        } else {
+                            mainScroll += event.deltaFactor * 3;
+                        }
+                    }
+                    $('html, body').animate({'scrollTop': mainScroll}, function() {
+                        isAnimateScroll = false;
+                    });
+                }
+            });
+        }
+    });
+
 });
 
 $(window).on('load resize', function() {
@@ -309,14 +432,14 @@ $(window).on('load resize', function() {
     });
 
     if (windowWidth > 767) {
-        $('.tech-step-prefs, .tech-step-docs-prefs, .tech-galvanizing-steps, .tech-step-controls, .about-who-container').each(function() {
+        $('.tech-step-prefs, .tech-step-docs-prefs, .tech-galvanizing-steps, .tech-step-controls, .about-who-container, .main-prefs-list').each(function() {
             var curList = $(this);
             if (curList.hasClass('slick-slider')) {
                 curList.slick('unslick');
             }
         });
     } else {
-        $('.tech-step-prefs, .tech-step-docs-prefs, .tech-galvanizing-steps, .tech-step-controls, .about-who-container').each(function() {
+        $('.tech-step-prefs, .tech-step-docs-prefs, .tech-galvanizing-steps, .tech-step-controls, .about-who-container, .main-prefs-list').each(function() {
             var curList = $(this);
             if (!curList.hasClass('slick-slider')) {
                 curList.slick({
@@ -348,6 +471,28 @@ $(window).on('load resize', function() {
                     arrows: false,
                     adaptiveHeight: true,
                     dots: true
+                });
+            }
+        });
+    }
+
+    if (windowWidth > 767) {
+        $('.main-header-prefs').each(function() {
+            var curList = $(this);
+            if (curList.hasClass('slick-slider')) {
+                curList.slick('unslick');
+            }
+        });
+    } else {
+        $('.main-header-prefs').each(function() {
+            var curList = $(this);
+            if (!curList.hasClass('slick-slider')) {
+                curList.slick({
+                    infinite: false,
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    arrows: false,
+                    dots: false
                 });
             }
         });
@@ -547,6 +692,20 @@ $(window).on('load resize scroll', function() {
                     $('.main-tank-about').css({'transform': 'translateY(0)'});
                 }
             }
+        }
+    });
+
+    $('.main-bolts-bg').each(function() {
+        var curBanner = $(this);
+        var curBannerIMG = curBanner.find('img');
+
+        var bannerHeight = curBanner.height();
+        var bannerIMGHeight = curBannerIMG.height();
+
+        if ((windowScroll + windowHeight) > curBanner.offset().top && windowScroll < curBanner.offset().top + bannerHeight) {
+            var curOffset = curBannerIMG.width() - curBanner.width();
+            var curPersent = windowScroll / (curBanner.offset().top + bannerHeight);
+            curBannerIMG.css({'transform': 'translateX(-' + (curOffset * curPersent) + 'px)'});
         }
     });
 

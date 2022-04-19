@@ -408,7 +408,7 @@ $(document).ready(function() {
                             mainScroll += event.deltaFactor * 3;
                         }
                     }
-                    $('html, body').animate({'scrollTop': mainScroll}, function() {
+                    $('html, body').animate({'scrollTop': mainScroll}, 800, 'easeInOutQuad', function() {
                         isAnimateScroll = false;
                     });
                 }
@@ -598,7 +598,7 @@ $(window).on('load resize scroll', function() {
     var windowHeight = $('#body-test-height').height();
     $('#body-test-height').remove();
 
-    $('.page-header-banner').each(function() {
+    $('.page-header-banner, .main-detail-inner .detail-inner-object-photo').each(function() {
         var curBanner = $(this);
         var curBannerIMG = curBanner.find('img');
 

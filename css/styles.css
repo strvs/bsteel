@@ -606,6 +606,8 @@ label.error {display:none !important}
 .tech-step-types-count {font-size:206px; line-height:227px; letter-spacing:0}
 .tech-step-types-count-text {font-weight:bold; font-size:25px; line-height:35px; letter-spacing:0.01em}
 .tech-step-types-text {margin:0 0 0 425px; padding:32px 0 0 0; font-weight:500; font-size:25px; line-height:35px; letter-spacing:0.01em}
+.tech-step-types-text-col {float:left; width:calc(50% - 20px); font-size:18px; line-height:29px}
+.tech-step-types-text-col+.tech-step-types-text-col {float:right}
 
 @media (max-width:1365px) {
     .tech-step-types {margin:5.85vw 0 0 0}
@@ -613,6 +615,7 @@ label.error {display:none !important}
     .tech-step-types-count {font-size:15.08vw; line-height:1.1em}
     .tech-step-types-count-text {font-size:1.83vw; line-height:1.4em}
     .tech-step-types-text {margin:0 0 0 31.11vw; padding:2.34vw 0 0 0; font-size:1.83vw; line-height:1.4em}
+    .tech-step-types-text-col {width:calc(50% - 1.46vw); font-size:1.31vw; line-height:1.61em}
 }
 
 @media (max-width:767px) {
@@ -621,6 +624,8 @@ label.error {display:none !important}
     .tech-step-types-count {font-size:112px; line-height:123px; letter-spacing:0.01em}
     .tech-step-types-count-text {font-weight:800; font-size:16px; line-height:19px; letter-spacing:0.02em}
     .tech-step-types-text {margin:40px 0 0 0; padding:0; font-size:18px; line-height:27px; letter-spacing:0}
+    .tech-step-types-text-col {float:none; width:auto; font-size:14px; line-height:24px}
+    .tech-step-types-text-col+.tech-step-types-text-col {float:none; margin:24px 0 0 0}
 }
 
 .tech-step-prefs {margin:112px -44px 0 -44px; position:relative}
@@ -660,6 +665,8 @@ label.error {display:none !important}
 .tech-step-project {margin:112px 0 0 0; background:#242424 url(../images/tech-step-project.png) no-repeat right bottom; padding:31px 32px 42px 32px; color:#dedede}
 .tech-step-project h3 {margin:0; color:#fff}
 .tech-step-project-text {margin:33px 0 0 0; max-width:680px}
+.tech-step-project-text:first-child {margin:51px 0 42px 71px; max-width:577px; font-size:25px; line-height:38px; font-weight:500}
+.tech-step-project-text span {color:#fff84f}
 .tech-step-project-link {margin:47px 0 0 0; font-size:16px; line-height:19px; font-weight:600}
 .tech-step-project-link a {display:inline-block; vertical-align:top; text-decoration:none; color:#fff}
 .tech-step-project-link a strong {display:inline-block; vertical-align:middle; width:44px; height:44px; border-radius:50%; opacity:0.86; position:relative}
@@ -673,6 +680,7 @@ label.error {display:none !important}
 @media (max-width:1365px) {
     .tech-step-project {margin:8.19vw 0 0 0; padding:2.26vw 2.34vw 3.07vw 2.34vw; background-size:32.72vw auto}
     .tech-step-project-text {margin:2.41vw 0 0 0; max-width:49.78vw}
+    .tech-step-project-text:first-child {margin:3.73vw 0 3.07vw 5.19vw; max-width:42.24vw; font-size:1.83vw; line-height:1.52em}
     .tech-step-project-link {margin:3.44vw 0 0 0; font-size:1.17vw; line-height:1.18em}
     .tech-step-project-link a strong {width:3.22vw; height:3.22vw}
     .tech-step-project-link a strong svg {width:1.46vw; height:1.46vw; margin:-0.73vw 0 0 -0.73vw}
@@ -683,6 +691,7 @@ label.error {display:none !important}
 @media (max-width:767px) {
     .tech-step-project {margin:80px 0 0 0; padding:32px 24px 194px 24px; background-size:auto; background:#242424 url(../images/tech-step-project-mobile.png) no-repeat center bottom}
     .tech-step-project-text {margin:24px 0 0 0; max-width:none}
+    .tech-step-project-text:first-child {margin:16px -8px 0 -8px; font-size:18px; line-height:27px; max-width:none}
     .tech-step-project-link {margin:20px 0 0 0; font-size:12px; line-height:14px; font-weight:bold}
     .tech-step-project-link a strong {width:36px; height:36px; opacity:1}
     .tech-step-project-link a:hover strong::before {transform:none}
@@ -1777,6 +1786,7 @@ label.error {display:none !important}
 
 .detail-split-left {position:absolute; left:64px; top:50%; transform:translateY(-50%); max-width:460px}
 .detail-split-left h2 {margin:0}
+.detail-split-left .tech-step-order+h2 {margin:24px -64px 0 0}
 .detail-split-left ul {margin:49px 0 0 0; padding:0; list-style:none}
 .detail-split-left ul li {margin:7px 0 0 0; padding:0}
 .detail-split-left ul li::before {display:none}
@@ -1786,6 +1796,7 @@ label.error {display:none !important}
 
 @media (max-width:1365px) {
     .detail-split-left {left:4.68vw; max-width:33.67vw}
+    .detail-split-left .tech-step-order+h2 {margin:1.75vwpx -4.68vw 0 0}
     .detail-split-left ul {margin:3.58vw 0 0 0}
     .detail-split-left ul li {margin:0.51vw 0 0 0}
 }
@@ -1862,9 +1873,10 @@ label.error {display:none !important}
 }
 
 .detail-split-info {background:#fff; display:table; width:100%; border-collapse:collapse}
-.detail-split-info-item {display:table-cell; vertical-align:top; width:33.33%; padding:48px 96px 80px 48px; border-left:1px solid #c7d1da}
+.detail-split-info-item {display:table-cell; vertical-align:top; width:33.33%; padding:48px 96px 80px 48px; border-left:1px solid #c7d1da; position:relative}
 .detail-split-info-item:first-child {border-left:none}
 .detail-split-info-item h3 {margin:0}
+.detail-split-info-item .tech-step-order+h3 {margin:16px 0 0 0}
 .detail-split-info-item h3 svg {display:none}
 .detail-split-info-item-text {margin:32px 0 0 0}
 .detail-split-info-item-link {margin:24px 0 0 0; font-size:16px; line-height:19px; font-weight:600; letter-spacing:0.01em}
@@ -1876,20 +1888,28 @@ label.error {display:none !important}
 .detail-split-info-item-link a span {display:inline-block; vertical-align:middle; margin:0 0 0 14px; position:relative}
 .detail-split-info-item-link a span::after {content:""; display:block; position:absolute; left:0; bottom:-5px; height:5px; right:0; border-bottom:1px dashed #798287; transition:border-color 0.2s}
 .detail-split-info-item-link a:hover span::after {border-color:transparent}
+.detail-split-info-item-img {position:absolute; right:0; bottom:0; line-height:0; width:200px}
+.detail-split-info-item-img img {display:block; width:100%}
+.detail-split-info-item-img+.detail-split-info-item-text {margin-right:176px}
 
 @media (max-width:1365px) {
     .detail-split-info-item {padding:3.51vw 7.02vw 5.85vw 3.51vw}
+    .detail-split-info-item .tech-step-order+h3 {margin:1.17vw 0 0 0}
     .detail-split-info-item-text {margin:2.34vw 0 0 0}
     .detail-split-info-item-link {margin:1.75vw 0 0 0; font-size:1.17vw; line-height:1.18em}
     .detail-split-info-item-link a strong {width:3.22vw; height:3.22vw}
     .detail-split-info-item-link a strong svg {width:3.22vw; height:3.22vw}
     .detail-split-info-item-link a span {margin:0 0 0 1.02vw}
+    .detail-split-info-item-img {width:14.64vw}
+    .detail-split-info-item-img+.detail-split-info-item-text {margin-right:12.88vw}
 }
 
 @media (max-width:767px) {
     .detail-split-info {margin:28px 16px 0 0; display:block; width:auto; padding:0 0 0 16px}
     .detail-split-info-item {display:block; width:auto; border-top:1px solid #c7d1da; padding:0; border-left:none}
     .detail-split-info-item:first-child {border-top:none}
+    .detail-split-info-item .tech-step-order {display:none}
+    .detail-split-info-item .tech-step-order+h3 {margin:0}
     .detail-split-info-item h3 {cursor:pointer; position:relative; padding:21px 54px 21px 0; font-weight:800; font-size:16px; line-height:19px; letter-spacing:0.02em}
     .detail-split-info-item h3 svg {display:block; width:44px; height:44px; fill:#171717; position:absolute; right:0; top:10px}
     .detail-split-info-item.open h3 svg {transform:rotate(-180deg)}
@@ -1899,6 +1919,7 @@ label.error {display:none !important}
     .detail-split-info-item.open .detail-split-info-item-link {display:block}
     .detail-split-info-item-link a strong {width:36px; height:36px}
     .detail-split-info-item-link a strong svg {width:36px; height:36px}
+    .detail-split-info-item-img {display:none}
 }
 
 .detail-prefs {height:950px; background:#242424; position:relative; overflow:hidden}
@@ -1985,6 +2006,7 @@ label.error {display:none !important}
 .detail-inner-variant-title {position:absolute; left:30px; top:30px; right:30px; font-weight:bold; font-size:25px; line-height:35px; letter-spacing:0.01em}
 .detail-inner-objects-title {display:none}
 .detail-inner-objects {margin:144px 0 0 0; font-size:0; line-height:0; letter-spacing:-1px; position:relative; overflow:hidden; white-space:nowrap}
+.detail-inner-objects-title:first-child+.detail-inner-objects {margin:-64px 0 0 0}
 .detail-inner-object {display:inline-block; vertical-align:top; width:100%; padding:0 64px; white-space:normal}
 .detail-inner-object-photo {float:left; width:calc(100% - 292px); position:relative; overflow:hidden}
 .detail-inner-object-photo img {display:block; width:100%}
@@ -2011,6 +2033,7 @@ label.error {display:none !important}
     .detail-inner-variant a {height:29.42vw}
     .detail-inner-variant-img {width:14.64vw}
     .detail-inner-variant-title {left:2.19vw; top:2.19vw; right:2.19vw; font-size:1.83vw; line-height:1.4em}
+    .detail-inner-objects-title:first-child+.detail-inner-objects {margin:-4.69vw 0 0 0}
     .detail-inner-objects {margin:10.54vw 0 0 0}
     .detail-inner-object {padding:0 4.68vw}
     .detail-inner-object-photo {width:calc(100% - 21.37vw)}
@@ -2036,6 +2059,7 @@ label.error {display:none !important}
     .detail-inner-variant-title {left:16px; top:24px; right:16px; font-weight:800; font-size:16px; line-height:19px; letter-spacing:0.02em}
     .detail-inner h2.detail-inner-objects-title {display:block; margin:81px 0 0 16px}
     .detail-inner-objects {margin:21px 52px 0 0; overflow:visible}
+    .detail-inner-objects-title:first-child+.detail-inner-objects {margin:21px 52px 0 0}
     .detail-inner-objects .slick-list {overflow:visible !important}
     .detail-inner-object {padding:0 16px}
     .detail-inner-object-photo {float:none; width:auto; height:150px}
@@ -2669,3 +2693,10 @@ label.error {display:none !important}
 .detail-window::after {content:""; display:block; clear:both}
 .detail-window-side {float:left; width:450px; margin:0 0 0 -40px; height:100vh; background:#fff84f}
 .detail-window-container {float:left; width:calc(100% - 410px); padding:100px 56px 60px 56px}
+
+.preload {position:fixed; left:0; top:0; right:0; bottom:0; background:#242424; z-index:99999}
+.preload-inner {width:417px; height:161px; margin:-80.5px 0 0 -208.5px; position:absolute; left:50%; top:50%; overflow:hidden}
+.preload-back {position:absolute; left:0; top:0; width:417px; height:161px; transform:translateY(100%); transition:transform 0.1s linear}
+.preload-middle {position:absolute; left:0; top:0; width:417px; height:161px}
+.preload-front {position:absolute; left:0; top:0; width:417px; height:161px}
+.preload-inner svg {display:block}

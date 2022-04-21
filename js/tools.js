@@ -416,6 +416,24 @@ $(document).ready(function() {
         }
     });
 
+    $('.preload').each(function() {
+
+        var countImages = $('img').length;
+        var curImages = 0;
+        $('img').each(function() {
+            var curImg = $(this);
+            curImg.attr('src', curImg.attr('src'));
+            curImg.one('load', function() {
+                curImages++;
+                var curProgress = Math.round(curImages / countImages * 100);
+                if (curProgress >= 0 && curProgress <= 100) {
+                    $('.preload-back').css({'transform': 'translateY(' + (100 - curProgress) + '%)'});
+                }
+            });
+        });
+
+    });
+
 });
 
 $(window).on('load resize', function() {
@@ -709,4 +727,15 @@ $(window).on('load resize scroll', function() {
         }
     });
 
+});
+
+$(window).on('load', function() {
+    $('.preload').each(function() {;
+        $('.preload-back').css({'transform': 'translateY(0)'});
+        window.setTimeout(function() {
+            $('.preload').fadeOut(function() {
+                $('.preload').remove();
+            });
+        }, 1000);
+    });
 });

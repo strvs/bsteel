@@ -2696,7 +2696,14 @@ label.error {display:none !important}
 
 .preload {position:fixed; left:0; top:0; right:0; bottom:0; background:#242424; z-index:99999}
 .preload-inner {width:417px; height:161px; margin:-80.5px 0 0 -208.5px; position:absolute; left:50%; top:50%; overflow:hidden}
-.preload-back {position:absolute; left:0; top:0; width:417px; height:161px; transform:translateY(100%); transition:transform 0.1s linear}
-.preload-middle {position:absolute; left:0; top:0; width:417px; height:161px}
-.preload-front {position:absolute; left:0; top:0; width:417px; height:161px}
+.preload-back {position:absolute; left:0; top:0; width:417px; height:161px; overflow:hidden; transform:translateY(100%); transition:transform 0.1s linear}
+.preload-middle {position:absolute; left:0; top:0; width:417px; height:161px; overflow:hidden}
+.preload-front {position:absolute; left:0; top:0; width:417px; height:161px; overflow:hidden}
 .preload-inner svg {display:block}
+
+@media (max-width:767px) {
+    .preload-inner {transform:scale(0.6)}
+    .preload-back {left:1px; width:415px; height:160px}
+    .preload-middle {width:418px; height:162px}
+    .preload-middle svg {width:418px; height:162px}
+}

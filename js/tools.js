@@ -575,6 +575,16 @@ function windowOpen(linkWindow, dataWindow) {
     }).done(function(html) {
         $('.window').html('<div class="window-container window-container-preload"><div class="window-content"><div class="window-content-inner">' + html + '</div></div><a href="#" class="window-close"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-close"></use></svg></a></div>');
 
+        if ($('.window-container .detail-split-window-menu').length > 0) {
+            $('.window-container').addClass('with-menu');
+            window.setTimeout(function() {
+                if ($('.window-container .detail-split-window-menu').length > 0) {
+                    $('.window').append('<div class="detail-split-window-menu">' + $('.window-container .detail-split-window-menu').html() + '</div>');
+                    $('.window-container .detail-split-window-menu').remove();
+                }
+            }, 500);
+        }
+
         window.setTimeout(function() {
             $('.window-container-preload').removeClass('window-container-preload');
         }, 100);
@@ -725,6 +735,30 @@ $(window).on('load resize scroll', function() {
             var curPersent = windowScroll / (curBanner.offset().top + bannerHeight);
             curBannerIMG.css({'transform': 'translateX(-' + (curOffset * curPersent) + 'px)'});
         }
+    });
+
+    $('.detail-prefs').each(function() {
+        if (windowScroll >= $('.detail-prefs').offset().top) {
+            if (windowScroll + windowHeight >= $('.detail-prefs').offset().top + $('.detail-prefs').outerHeight()) {
+                $('.detail-prefs').removeClass('fixed');
+                $('.detail-prefs-side').addClass('bottom');
+            } else {
+                $('.detail-prefs').addClass('fixed');
+                $('.detail-prefs-side').removeClass('bottom');
+            }
+        } else {
+            $('.detail-prefs').removeClass('fixed');
+            $('.detail-prefs-side').removeClass('bottom');
+        }
+
+        $('.detail-prefs-item').each(function() {
+            var curItem = $(this);
+            var curIndex = $('.detail-prefs-item').index(curItem);
+            if (windowScroll + windowHeight * 3 / 4  > curItem.offset().top) {
+                $('.detail-prefs-side-image.active').removeClass('active');
+                $('.detail-prefs-side-image').eq(curIndex).addClass('active');
+            }
+        });
     });
 
 });

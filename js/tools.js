@@ -808,6 +808,30 @@ $(window).on('load resize scroll', function() {
         }
     });
 
+    $('.detail-prefs').each(function() {
+        if (windowScroll >= $('.detail-prefs').offset().top) {
+            if (windowScroll + windowHeight >= $('.detail-prefs').offset().top + $('.detail-prefs').outerHeight()) {
+                $('.detail-prefs').removeClass('fixed');
+                $('.detail-prefs-side').addClass('bottom');
+            } else {
+                $('.detail-prefs').addClass('fixed');
+                $('.detail-prefs-side').removeClass('bottom');
+            }
+        } else {
+            $('.detail-prefs').removeClass('fixed');
+            $('.detail-prefs-side').removeClass('bottom');
+        }
+
+        $('.detail-prefs-item').each(function() {
+            var curItem = $(this);
+            var curIndex = $('.detail-prefs-item').index(curItem);
+            if (windowScroll + windowHeight * 3 / 4  > curItem.offset().top) {
+                $('.detail-prefs-side-image.active').removeClass('active');
+                $('.detail-prefs-side-image').eq(curIndex).addClass('active');
+            }
+        });
+    });
+
 });
 
 $(window).on('load', function() {

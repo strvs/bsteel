@@ -342,8 +342,8 @@ $(document).ready(function() {
                             mainStep = 4;
                             mainScroll = $('.main-prefs').offset().top;
                             $('.main-prefs-list').css({ 'transform': 'translateY(-' + ($('.main-prefs-item').eq(2).offset().top - $('.main-prefs-list').offset().top) + 'px)' });
-                        } else if (mainStep == 4) {                           
-                            $('.main-tank').css({ 'transition': 'none' }); 
+                        } else if (mainStep == 4) {
+                            $('.main-tank').css({ 'transition': 'none' });
                             $('.info-ray').removeClass('info-ray-visible');
                             currentInfoIndex = 3;
                             mainStep = 5;
@@ -409,7 +409,7 @@ $(document).ready(function() {
                             mainStep = 4;
                             mainScroll = $('.main-prefs').offset().top;
                             $('.main-prefs-list').css({ 'transform': 'translateY(-' + ($('.main-prefs-item').eq(2).offset().top - $('.main-prefs-list').offset().top) + 'px)' });
-                        } else if (mainStep == 6) {                            
+                        } else if (mainStep == 6) {
                             $('.info-ray').removeClass('info-ray-visible');
                             currentInfoIndex = 3;
                             mainStep = 5;
@@ -469,6 +469,10 @@ $(document).ready(function() {
             });
         });
 
+    });
+
+    $('body').on('blur', '.window-select-header-form-input input', function() {
+        $('.window-select-header-form-input strong').html($('.window-select-header-form-input input').val());
     });
 
 });
@@ -636,6 +640,29 @@ function windowOpen(linkWindow, dataWindow) {
             initForm($(this));
         });
 
+        $('.window-select-header-form form').each(function() {
+            var curForm = $(this);
+            var validator = curForm.validate();
+            if (validator) {
+                validator.destroy();
+            }
+            curForm.validate({
+                ignore: '',
+                submitHandler: function(form) {
+                    var curData = curForm.serialize();
+                    $.ajax({
+                        type: 'POST',
+                        url: curForm.attr('action'),
+                        dataType: 'html',
+                        data: curData,
+                        cache: false
+                    }).done(function(html) {
+                        $('.window-select-results').html(html);
+                    });
+                }
+            });
+        });
+
         $('.window .news-detail-slider').each(function() {
             var curSlider = $(this);
             curSlider.slick({
@@ -768,7 +795,7 @@ $(window).on('load resize scroll', function() {
                 var curIndex = Math.round(curPersent * curCount);
                 if (curIndex >= curCount) {
                     curIndex = curCount - 1;
-                    tankTop = -$('.main-tank').offset().top;                        
+                    tankTop = -$('.main-tank').offset().top;
                 }
                 $('.main-tank-about img').eq(curIndex).addClass('active2');
             } else {
@@ -778,10 +805,10 @@ $(window).on('load resize scroll', function() {
                 } else {
                     $('.main-tank-about').css({ 'transform': 'translateY(0)' });
                 }*/
-                if (windowScroll+2*windowHeight > $('.main-catalogue').offset().top) {                    
+                if (windowScroll+2*windowHeight > $('.main-catalogue').offset().top) {
                     //$('.main-tank').css({ 'transform': 'translate(-50vw, ' + (tankTop - windowScroll + 3*windowHeight ) + 'px)' });
                     //$('.main-tank').css({ 'transform': 'translate(-50vw, ' + (-57 -  Math.floor(100*((windowScroll-2*windowHeight)/windowHeight))) + 'vh)' });
-                    
+
                     let dist = windowScroll + windowHeight - $('.main-catalogue').offset().top;
                     dist = dist < 181 ? 0 : dist;
                     $('.main-tank').css({ 'transform': 'translate(' + (tankFinishX + deltaTankWidth) + 'vw, ' + (-windowHeight*0.57 -dist) + 'px)' });

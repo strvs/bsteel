@@ -861,16 +861,56 @@ $(window).on('load resize scroll', function() {
 
 });
 
-$(window).on('load', function() {
-    $('.preload').each(function() {;
-        $('.preload-back').css({'transform': 'translateY(0)'});
-        window.setTimeout(function() {
-            $('.preload').fadeOut(function() {
-                $('.preload').remove();
-            });
-        }, 1000);
-    });
+
+// Старый скрипт прилоудера
+// $(window).on('load', function() {
+//     $('.preload').each(function() {;
+//         $('.preload-back').css({'transform': 'translateY(0)'});
+//         window.setTimeout(function() {
+//             $('.preload').fadeOut(function() {
+//                 $('.preload').remove();
+//             });
+//         }, 1000);
+//     });
+// });
+
+
+// Место где начинается нормальный прилоудер
+document.addEventListener("DOMContentLoaded", () => {
+    let preloader = document.querySelector('.preload');
+            
+            var images = document.querySelectorAll('.main-tank img');
+            //var images = document.images;
+
+            console.log(images)
+			var images_total_count = images.length;
+			var images_loaded_count = 0;
+			//var perc_display = document.querySelector('.load-perc-line')
+
+			for ( var i = 0; i < images_total_count; i++){
+				image_clone = new Image();
+				image_clone.onload = image_loaded;
+				image_clone.onerror = image_loaded;
+				image_clone.src = images[i].src;
+			}
+			
+			function image_loaded() {
+				images_loaded_count++;
+
+				//perc_display.style.width = (( (100 / images_total_count) * images_loaded_count) <<0) + '%';
+
+				if(images_loaded_count >= images_total_count){
+                    $('.preload-back').css({'transform': 'translateY(0)'});
+					window.setTimeout(function () {
+                        $('.preload').fadeOut(function() {
+                            $('.preload').remove();
+                        });
+					}, 700);
+				}
+			}
+
 });
+
 
 function updateInfoRay(item) {
     $('.info-ray').removeClass('info-ray-visible');
